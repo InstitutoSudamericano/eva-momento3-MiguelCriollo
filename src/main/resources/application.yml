@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8082
   error:
     include-message: always
 #Configuracion de spring
@@ -14,9 +14,6 @@ spring:
     baselineOnMigrate: true
     sqlMigrationPrefix: V
     schemas: public
-
   datasource:
-    url: jdbc:postgresql://rajje.db.elephantsql.com:5432/nowznfyd?socketTimeout=3
-    username: nowznfyd
-    password: ktaCqM8sgYZ_5w-gG24yzYRdTYhaEgqI
+    url: jdbc:postgresql://ep-misty-shadow-a5rb81cw.us-east-2.aws.neon.tech/Momento3?user=miguelcrivas4502&password=MIgSBpn41ujc&sslmode=require
     driverClassName: org.postgresql.Driver

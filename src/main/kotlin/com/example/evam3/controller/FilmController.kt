@@ -2,11 +2,12 @@ package com.example.evam3.controller
 
 import com.example.evam3.entity.Film
 import com.example.evam3.service.FilmService
+import jakarta.validation.Valid
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-
+@CrossOrigin(methods = [RequestMethod.GET, RequestMethod.POST, RequestMethod.PATCH, RequestMethod.PUT, RequestMethod.DELETE])
 @RestController
 @RequestMapping("/film")
 class FilmController {
@@ -19,7 +20,7 @@ class FilmController {
     }
 
     @PostMapping
-    fun save (@RequestBody film: Film): ResponseEntity<*> {
+    fun save (@Valid @RequestBody film: Film): ResponseEntity<*> {
         return ResponseEntity<Film>(filmService.save(film), HttpStatus.CREATED)
     }
 
