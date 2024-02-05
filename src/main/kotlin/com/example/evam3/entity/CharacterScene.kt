@@ -12,7 +12,7 @@ class CharacterScene {
     @Column(updatable = false)
     var id: Long? = null
 
-    @NotBlank(message="El actor debe tener minutos de Escena")
+    @NotBlank(message="El actor debe tener minutos de Escenas")
     @Column(name = "character_minutes")
     var characterMinutes: Int? = null
 
