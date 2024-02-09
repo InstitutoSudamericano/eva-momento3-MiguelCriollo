@@ -16,13 +16,4 @@ class CharacterScene {
     @Column(name = "character_minutes")
     var characterMinutes: Int? = null
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "character_id")
-    var character: Character? = null
-
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "scene_id")
-    var scene: Scene? = null
 }

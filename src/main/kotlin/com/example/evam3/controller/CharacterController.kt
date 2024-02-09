@@ -26,4 +26,9 @@ class CharacterController {
         return ResponseEntity(characterService.save(character), HttpStatus.CREATED)
     }
 
+    @DeleteMapping("/delete/{id}")
+    fun delete (@PathVariable("id") id: Long):String?{
+        return characterService.delete(id)
+    }
+
 }

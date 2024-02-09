@@ -1,8 +1,10 @@
 package com.example.evam3.entity
 
+import com.fasterxml.jackson.annotation.JsonBackReference
 import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 import jakarta.validation.constraints.NotBlank
+import jakarta.validation.constraints.NotNull
 
 @Entity
 @Table (name="character")
@@ -17,11 +19,15 @@ class Character {
 
     var description: String? = null
 
-    @NotBlank(message="El Actor debe tener un Precio por Minuto")
+    @NotNull(message="El Actor debe tener un Precio por Minuto")
     @Column(name = "price_minute")
     var priceMinute: Double? = null
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "character",cascade = [CascadeType.ALL], orphanRemoval = true)
-    var characterScene:MutableSet<CharacterScene> = mutableSetOf()
+    @Transient
+    var sceneId:Long?=null
+
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "scene_id",referencedColumnName = "id")
+    var scene:Scene? = null
 }

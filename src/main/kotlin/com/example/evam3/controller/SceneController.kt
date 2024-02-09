@@ -26,4 +26,8 @@ class SceneController {
         return ResponseEntity(sceneService.save(scene), HttpStatus.CREATED)
     }
 
+    @DeleteMapping("/delete/{id}")
+    fun delete (@PathVariable("id") id: Long):String?{
+        return sceneService.delete(id)
+    }
 }

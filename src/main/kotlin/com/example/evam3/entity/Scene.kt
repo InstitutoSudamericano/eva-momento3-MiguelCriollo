@@ -1,6 +1,8 @@
 package com.example.evam3.entity
 
+import com.fasterxml.jackson.annotation.JsonBackReference
 import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import jakarta.persistence.*
 import jakarta.validation.constraints.NotBlank
 
@@ -20,11 +22,15 @@ class Scene {
 
     var minutes: Int? = null
 
+    @Transient
+    var filmId: Long? = null
+
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "film_id",referencedColumnName = "id")
     var film:Film?=null
 
-    @JsonIgnore
+    @JsonManagedReference
     @OneToMany(mappedBy = "scene",cascade = [CascadeType.ALL], orphanRemoval = true)
-    var characterScene:MutableSet<CharacterScene> = mutableSetOf()
+    var character:MutableSet<Character> = mutableSetOf()
 }

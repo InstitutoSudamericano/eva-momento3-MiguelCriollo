@@ -1,6 +1,7 @@
 package com.example.evam3.entity
 
 import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import jakarta.persistence.*
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
@@ -25,7 +26,7 @@ class Film {
     @NotNull(message="La pelicula debe tener un presupuesto")
     var budget:Double=0.0
 
-    @JsonIgnore
+    @JsonManagedReference
     @OneToMany(mappedBy = "film",cascade = [CascadeType.ALL], orphanRemoval = true)
     var scene: MutableSet<Scene> = mutableSetOf()
 

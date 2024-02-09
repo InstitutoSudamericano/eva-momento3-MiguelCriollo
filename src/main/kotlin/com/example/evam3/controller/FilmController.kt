@@ -24,4 +24,8 @@ class FilmController {
         return ResponseEntity<Film>(filmService.save(film), HttpStatus.CREATED)
     }
 
+    @DeleteMapping("/delete/{id}")
+    fun delete (@PathVariable("id") id: Long):String?{
+        return filmService.delete(id)
+    }
 }

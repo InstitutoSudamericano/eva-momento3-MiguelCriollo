@@ -1,5 +1,6 @@
 package com.example.evam3.repository
 
+import com.example.evam3.entity.Character
 import com.example.evam3.entity.CharacterScene
 import com.example.evam3.entity.Film
 import com.example.evam3.entity.Scene
@@ -8,5 +9,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface CharacterSceneRepository:JpaRepository<CharacterScene, Long> {
-
+    fun findById (id: Long?): CharacterScene?
 }

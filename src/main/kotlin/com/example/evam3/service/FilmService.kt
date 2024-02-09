@@ -17,14 +17,24 @@ class FilmService {
     }
 
     fun save (film:Film): Film{
-        try{
-            film.title?.takeIf { it.trim().isNotEmpty() }
-                ?: throw Exception("Film no debe ser vacio")
+        val possibleFilm=filmRepository.findById(film.id)
+        if(possibleFilm===null){
+            return filmRepository.save(film)
+        }else{
+            film.scene=possibleFilm.scene
             return filmRepository.save(film)
         }
-        catch (ex: Exception){
-            throw ResponseStatusException(HttpStatus.BAD_REQUEST,ex.message)
-        }
 
+    }
+    fun delete (id: Long):String?{
+        try{
+            val response = filmRepository.findById(id)
+                ?: throw Exception("ID no existe")
+            filmRepository.deleteById(id)
+            return "ID eliminado Correctamente!!!"
+        }
+        catch (ex:Exception){
+            throw ResponseStatusException(HttpStatus.NOT_FOUND,ex.message)
+        }
     }
 }
